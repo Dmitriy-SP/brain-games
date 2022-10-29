@@ -10,7 +10,7 @@ export default () => {
   let rndNum2;
   let operationType;
   let userAnswer;
-  const minNumber = 0;
+  const minNumber = 1;
   const maxNumber = 100;
   const userName = greeting();
 
