@@ -1,6 +1,6 @@
 import readlineSync from 'readline-sync';
 
-const getRandom = () => Math.trunc(Math.random() * 100);
+const getRandom = () => Math.trunc(Math.random() * 99 + 1);
 
 export default (userName) => {
   let rndNum;
