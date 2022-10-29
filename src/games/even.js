@@ -1,13 +1,17 @@
 import readlineSync from 'readline-sync';
+import greeting, { gameRound, getRandom } from '../index.js';
 
-const getRandom = () => Math.trunc(Math.random() * 99 + 1);
-
-export default (userName) => {
+export default () => {
   let rndNum;
   let userAnswer;
+  const minNumber = 1;
+  const maxNumber = 100;
 
-  for (let check = 0; check < 3;) {
-    rndNum = getRandom();
+  const userName = greeting();
+  console.log('Answer "yes" if the number is even, otherwise answer "no".');
+
+  for (let check = 0; check < gameRound;) {
+    rndNum = getRandom(minNumber, maxNumber);
     console.log(`Question: ${rndNum}`);
     userAnswer = readlineSync.question('Your answer: ');
     switch (userAnswer) {
