@@ -13,13 +13,12 @@ const playBrainEven = () => {
   const userName = greeting();
   console.log('Answer "yes" if the number is even, otherwise answer "no".');
 
-  for (let check = 0; check < gameRound;) {
+  for (let check = 0; check < gameRound; check += 1) {
     rndNum = getRandom(minNumber, maxNumber);
     console.log(`Question: ${rndNum}`);
     userAnswer = getAnswer();
 
     if (isEven(userAnswer, userName, rndNum) === false) return;
-    check += 1;
   }
 
   getCongratulations(userName);

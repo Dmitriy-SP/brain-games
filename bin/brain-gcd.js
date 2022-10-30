@@ -15,7 +15,7 @@ const playGCD = () => {
 
   console.log('Find the greatest common divisor of given numbers.');
 
-  for (let check = 0; check < gameRound;) {
+  for (let check = 0; check < gameRound; check += 1) {
     rndNum1 = getRandom(minNumber, maxNumber);
     rndNum2 = getRandom(minNumber, maxNumber);
     console.log(`Question: ${rndNum1} ${rndNum2}`);
@@ -27,7 +27,6 @@ const playGCD = () => {
     }
 
     if (Number(userAnswer) === varGCD) {
-      check += 1;
       getRightAnswer();
     } else {
       getWrongAnswer(userAnswer, userName, varGCD);

@@ -15,7 +15,7 @@ const playProgression = () => {
   const userName = greeting();
   console.log('What number is missing in the progression?');
 
-  for (let check = 0; check < gameRound;) {
+  for (let check = 0; check < gameRound; check += 1) {
     getProgression(progression);
     hiddenNumIndex = getRandom(0, progression.length);
     hiddenNum = progression[hiddenNumIndex];
@@ -28,7 +28,6 @@ const playProgression = () => {
     }
 
     if (Number(userAnswer) === hiddenNum) {
-      check += 1;
       getRightAnswer();
     } else {
       getWrongAnswer(userAnswer, userName, hiddenNum);

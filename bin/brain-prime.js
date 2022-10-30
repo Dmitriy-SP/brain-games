@@ -13,13 +13,12 @@ const playPrime = () => {
 
   console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
 
-  for (let check = 0; check < gameRound;) {
+  for (let check = 0; check < gameRound; check += 1) {
     rndNum = getRandom(minNumber, maxNumber);
     console.log(`Question: ${rndNum}`);
     userAnswer = getAnswer();
 
     if (userAnswer === isPrime(rndNum)) {
-      check += 1;
       console.log('Correct!');
     } else {
       getWrongAnswer(userAnswer, userName, isPrime(rndNum));
