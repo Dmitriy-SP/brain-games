@@ -33,7 +33,7 @@ export const isNumber = (userAnswer, rightAnswer, userName) => {
 };
 
 // writing if user get wrong answer
-export const getWrongAnswer = (userAnswer, userName, rightAnswer) => console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${rightAnswer}'.\nLet's try again, ${userName}`);
+export const getWrongAnswer = (userAnswer, userName, rightAnswer) => console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${rightAnswer}'.\nLet's try again, ${userName}!`);
 
 // writing if user get right answer
 export const getRightAnswer = () => {
