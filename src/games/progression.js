@@ -1,16 +1,19 @@
-import readlineSync from 'readline-sync';
+import { getAnswer } from '../cli.js';
 import greeting, {
-  gameRound, getRandom, minNumber, maxNumber, getCongratulations, isNumber,
+  gameRound, getRandom, minNumber, maxNumber, getCongratulations, isNumber, getWrongAnswer,
 } from '../index.js';
 
+// module canstants
 const minLength = 5;
 const maxLength = 10;
 const minStep = 1;
 const maxStep = 20;
 const operationTypes = ['+', '-'];
 
+// defining operation sign
 const getOperation = () => operationTypes[getRandom(0, operationTypes.length - 1)];
 
+// defining progression
 const getProgression = (progression) => {
   const rndLength = getRandom(minLength, maxLength);
   const rndStep = getRandom(minStep, maxStep);
@@ -31,9 +34,11 @@ const getProgression = (progression) => {
       break;
     default:
   }
+
   return progression;
 };
 
+// main progression-game function
 export default () => {
   let userAnswer;
   let hiddenNum;
@@ -49,7 +54,7 @@ export default () => {
     hiddenNum = progression[hiddenNumIndex];
     progression[hiddenNumIndex] = '..';
     console.log(`Question: ${progression.join(' ')}`);
-    userAnswer = readlineSync.question('Your answer: ');
+    userAnswer = getAnswer();
 
     if (isNumber(userAnswer, hiddenNum, userName) === false) {
       return;
@@ -59,9 +64,10 @@ export default () => {
       check += 1;
       console.log('Correct!');
     } else {
-      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${hiddenNum}'.\nLet's try again, ${userName}`);
+      getWrongAnswer(userAnswer, userName, hiddenNum);
       return;
     }
   }
+
   getCongratulations(userName);
 };

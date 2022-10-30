@@ -1,8 +1,9 @@
-import readlineSync from 'readline-sync';
+import { getAnswer } from '../cli.js';
 import greeting, {
-  gameRound, getRandom, minNumber, maxNumber, getCongratulations,
+  gameRound, getRandom, minNumber, maxNumber, getCongratulations, getWrongAnswer,
 } from '../index.js';
 
+// determining if a variable is prime
 const isPrime = (incomeNum) => {
   for (let i = 2; i < incomeNum; i += 1) {
     if (incomeNum % i === 0) {
@@ -12,6 +13,7 @@ const isPrime = (incomeNum) => {
   return 'yes';
 };
 
+// main prime-game function
 export default () => {
   let rndNum;
   let userAnswer;
@@ -22,12 +24,13 @@ export default () => {
   for (let check = 0; check < gameRound;) {
     rndNum = getRandom(minNumber, maxNumber);
     console.log(`Question: ${rndNum}`);
-    userAnswer = readlineSync.question('Your answer: ');
+    userAnswer = getAnswer();
+    
     if (userAnswer === isPrime(rndNum)) {
       check += 1;
       console.log('Correct!');
     } else {
-      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${isPrime(rndNum)}'.\nLet's try again, ${userName}`);
+      getWrongAnswer(userAnswer, userName, isPrime(rndNum));
       return;
     }
   }

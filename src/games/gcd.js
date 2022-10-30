@@ -1,11 +1,13 @@
-import readlineSync from 'readline-sync';
+import { getAnswer } from '../cli.js';
 import greeting, {
-  gameRound, getRandom, minNumber, maxNumber, getCongratulations, isNumber,
+  gameRound, getRandom, minNumber, maxNumber, getCongratulations, isNumber, getWrongAnswer,
 } from '../index.js';
 
+// definition of GCD numbers
 const GCD = (num1, num2) => {
   let number1 = num1;
   let number2 = num2;
+
   while (number1 !== 0 && number2 !== 0) {
     if (number1 > number2) {
       number1 %= number2;
@@ -13,9 +15,11 @@ const GCD = (num1, num2) => {
       number2 %= number1;
     }
   }
+  
   return (number1 + number2);
 };
 
+// main gcd-game function
 export default () => {
   let rndNum1;
   let rndNum2;
@@ -29,7 +33,7 @@ export default () => {
     rndNum1 = getRandom(minNumber, maxNumber);
     rndNum2 = getRandom(minNumber, maxNumber);
     console.log(`Question: ${rndNum1} ${rndNum2}`);
-    userAnswer = readlineSync.question('Your answer: ');
+    userAnswer = getAnswer();
 
     varGCD = GCD(rndNum1, rndNum2);
     if (isNumber(userAnswer, varGCD, userName) === false) {
@@ -40,7 +44,7 @@ export default () => {
       check += 1;
       console.log('Correct!');
     } else {
-      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${varGCD}'.\nLet's try again, ${userName}`);
+      getWrongAnswer(userAnswer, userName, varGCD);
       return;
     }
   }
