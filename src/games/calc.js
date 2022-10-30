@@ -1,6 +1,6 @@
 import {
-  getRandom, getWrongAnswer,
-} from '../index.js'; 
+  getRandom, getWrongAnswer, getRightAnswer,
+} from '../index.js';
 
 // local module canstants
 const operationTypes = ['+', '-', '*'];
@@ -13,22 +13,19 @@ export const isCalcRight = (userAnswer, userName, rndNum1, rndNum2, operationTyp
   switch (operationType) {
     case '+':
       if (Number(userAnswer) === (rndNum1 + rndNum2)) {
-        console.log('Correct!');
-        return true;
+        return getRightAnswer();
       }
       getWrongAnswer(userAnswer, userName, (rndNum1 + rndNum2));
       break;
     case '-':
       if (Number(userAnswer) === (rndNum1 - rndNum2)) {
-        console.log('Correct!');
-        return true;
+        return getRightAnswer();
       }
       getWrongAnswer(userAnswer, userName, (rndNum1 - rndNum2));
       break;
     case '*':
       if (Number(userAnswer) === (rndNum1 * rndNum2)) {
-        console.log('Correct!');
-        return true;
+        return getRightAnswer();
       }
       getWrongAnswer(userAnswer, userName, (rndNum1 * rndNum2));
       break;

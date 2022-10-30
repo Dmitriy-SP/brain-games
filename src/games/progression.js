@@ -1,4 +1,4 @@
-import { getRandom, minNumber, maxNumber, } from '../index.js';
+import { getRandom, minNumber, maxNumber } from '../index.js';
 
 // module canstants
 const minLength = 5;
