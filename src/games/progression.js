@@ -11,10 +11,10 @@ const operationTypes = ['+', '-'];
 const getOperation = () => operationTypes[getRandom(0, operationTypes.length - 1)];
 
 // defining progression
-export default (progression) => {
+export default () => {
   const rndLength = getRandom(minLength, maxLength);
   const rndStep = getRandom(minStep, maxStep);
-  progression.length = 0;
+  const progression = [];
   progression[0] = getRandom(minNumber, maxNumber);
   const operationType = getOperation();
 

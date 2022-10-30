@@ -10,13 +10,12 @@ const playProgression = () => {
   let userAnswer;
   let hiddenNum;
   let hiddenNumIndex;
-  const progression = [];
 
   const userName = greeting();
   console.log('What number is missing in the progression?');
 
   for (let check = 0; check < gameRound; check += 1) {
-    getProgression(progression);
+    const progression = getProgression();
     hiddenNumIndex = getRandom(0, progression.length);
     hiddenNum = progression[hiddenNumIndex];
     progression[hiddenNumIndex] = '..';

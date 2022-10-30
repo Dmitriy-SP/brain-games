@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
 import greeting, {
-  minNumber, gameRound, maxNumber, getRandom, isNumber, getWrongAnswer, getCongratulations, getRightAnswer,
+  minNumber, gameRound, maxNumber, getRandom, isNumber, getWrongAnswer,
+  getCongratulations, getRightAnswer,
 } from '../src/index.js';
 import { getAnswer } from '../src/cli.js';
 import isGCD from '../src/games/gcd.js';
