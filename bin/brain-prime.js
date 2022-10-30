@@ -2,7 +2,7 @@
 
 import { getAnswer } from '../src/cli.js';
 import greeting, {
-  gameRound, getRandom, minNumber, maxNumber, getCongratulations, getWrongAnswer,
+  gameRound, getRandom, minNumber, maxNumber, getCongratulations, getWrongAnswer, getRightAnswer,
 } from '../src/index.js';
 import isPrime from '../src/games/prime.js';
 
@@ -19,7 +19,7 @@ const playPrime = () => {
     userAnswer = getAnswer();
 
     if (userAnswer === isPrime(rndNum)) {
-      console.log('Correct!');
+      getRightAnswer();
     } else {
       getWrongAnswer(userAnswer, userName, isPrime(rndNum));
       return;
