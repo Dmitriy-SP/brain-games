@@ -25,7 +25,7 @@ export default () => {
     rndNum = getRandom(minNumber, maxNumber);
     console.log(`Question: ${rndNum}`);
     userAnswer = getAnswer();
-    
+
     if (userAnswer === isPrime(rndNum)) {
       check += 1;
       console.log('Correct!');

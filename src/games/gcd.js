@@ -15,7 +15,7 @@ const GCD = (num1, num2) => {
       number2 %= number1;
     }
   }
-  
+
   return (number1 + number2);
 };
 

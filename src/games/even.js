@@ -18,7 +18,7 @@ const isEven = (userAnswer, userName, rndNum) => {
         console.log('Correct!');
         return true;
       }
-      getWrongAnswer(userAnswer, userName, 'yes')
+      getWrongAnswer(userAnswer, userName, 'yes');
       break;
     default:
       console.log(`'${userAnswer}' is wrong answer ;(.\nLet's try again, ${userName}`);

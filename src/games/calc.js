@@ -17,21 +17,21 @@ const isCalcRight = (userAnswer, userName, rndNum1, rndNum2, operationType) => {
         console.log('Correct!');
         return true;
       }
-        getWrongAnswer(userAnswer, userName, (rndNum1 + rndNum2));
+      getWrongAnswer(userAnswer, userName, (rndNum1 + rndNum2));
       break;
     case '-':
       if (Number(userAnswer) === (rndNum1 - rndNum2)) {
         console.log('Correct!');
         return true;
       }
-        getWrongAnswer(userAnswer, userName, (rndNum1 - rndNum2));
+      getWrongAnswer(userAnswer, userName, (rndNum1 - rndNum2));
       break;
     case '*':
       if (Number(userAnswer) === (rndNum1 * rndNum2)) {
         console.log('Correct!');
         return true;
       }
-        getWrongAnswer(userAnswer, userName, (rndNum1 * rndNum2));
+      getWrongAnswer(userAnswer, userName, (rndNum1 * rndNum2));
       break;
     default:
   }
