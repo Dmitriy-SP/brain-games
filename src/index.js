@@ -18,3 +18,11 @@ export const getCongratulations = (userName) => {
 };
 
 export const getRandom = (minNum, maxNum) => Math.trunc(Math.random() * (maxNum - minNum) + minNum);
+
+export const isNumber = (userAnswer, rightAnswer, userName) => {
+  if (Number.isNaN(userAnswer) === true) {
+    console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${rightAnswer}'.\nLet's try again, ${userName}`);
+    return false;
+  }
+  return true;
+};

@@ -1,6 +1,6 @@
 import readlineSync from 'readline-sync';
 import greeting, {
-  gameRound, getRandom, minNumber, maxNumber, getCongratulations,
+  gameRound, getRandom, minNumber, maxNumber, getCongratulations, isNumber,
 } from '../index.js';
 
 const minLength = 5;
@@ -14,6 +14,7 @@ const getOperation = () => operationTypes[getRandom(0, operationTypes.length - 1
 const getProgression = (progression) => {
   const rndLength = getRandom(minLength, maxLength);
   const rndStep = getRandom(minStep, maxStep);
+  progression.length = 0;
   progression[0] = getRandom(minNumber, maxNumber);
   const operationType = getOperation();
 
@@ -48,8 +49,13 @@ export default () => {
     hiddenNum = progression[hiddenNumIndex];
     progression[hiddenNumIndex] = '..';
     console.log(`Question: ${progression.join(' ')}`);
-    userAnswer = Number(readlineSync.question('Your answer: '));
-    if (userAnswer === hiddenNum) {
+    userAnswer = readlineSync.question('Your answer: ');
+
+    if (isNumber(userAnswer, hiddenNum, userName) === false) {
+      return;
+    }
+
+    if (Number(userAnswer) === hiddenNum) {
       check += 1;
       console.log('Correct!');
     } else {

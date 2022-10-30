@@ -1,6 +1,6 @@
 import readlineSync from 'readline-sync';
 import greeting, {
-  gameRound, getRandom, minNumber, maxNumber, getCongratulations,
+  gameRound, getRandom, minNumber, maxNumber, getCongratulations, isNumber,
 } from '../index.js';
 
 const operationTypes = ['+', '-', '*'];
@@ -21,11 +21,15 @@ export default () => {
     rndNum2 = getRandom(minNumber, maxNumber);
     operationType = getOperation();
     console.log(`Question: ${rndNum1} ${operationType} ${rndNum2}`);
-    userAnswer = Number(readlineSync.question('Your answer: '));
+    userAnswer = readlineSync.question('Your answer: ');
+
+    if (isNumber(userAnswer, (rndNum1 + rndNum2), userName) === false) {
+      return;
+    }
 
     switch (operationType) {
       case '+':
-        if (userAnswer === (rndNum1 + rndNum2)) {
+        if (Number(userAnswer) === (rndNum1 + rndNum2)) {
           check += 1;
           console.log('Correct!');
         } else {
@@ -34,7 +38,7 @@ export default () => {
         }
         break;
       case '-':
-        if (userAnswer === (rndNum1 - rndNum2)) {
+        if (Number(userAnswer) === (rndNum1 - rndNum2)) {
           check += 1;
           console.log('Correct!');
         } else {
@@ -43,7 +47,7 @@ export default () => {
         }
         break;
       case '*':
-        if (userAnswer === (rndNum1 * rndNum2)) {
+        if (Number(userAnswer) === (rndNum1 * rndNum2)) {
           check += 1;
           console.log('Correct!');
         } else {
@@ -53,6 +57,6 @@ export default () => {
         break;
       default:
     }
-    getCongratulations(userName);
   }
+  getCongratulations(userName);
 };

@@ -4,5 +4,17 @@
 ### Maintainability Badge
 <a href="https://codeclimate.com/github/Dmitriy-SP/frontend-project-44/maintainability"><img src="https://api.codeclimate.com/v1/badges/04d5697b7c36c1ab492f/maintainability" /></a>
 
-### Asciinema
+### Asciinema brain-even
 https://asciinema.org/a/v4QKutdT2niqkZWjtXsVvLp5q
+
+### Asciinema brain-calc
+https://asciinema.org/a/FMBA1yhuGGQhpVg5oupHhAcob
+
+### Asciinema brain-gcd
+https://asciinema.org/a/vT13TF8cHHkq64hW4nH1aBzlD
+
+### Asciinema brain-prime
+https://asciinema.org/a/YmVjL8Wtow4oRj1RXcp5JD8BT
+
+### Asciinema brain-progression
+https://asciinema.org/a/61Rm9itBfjsu584n1hAfSu6cu

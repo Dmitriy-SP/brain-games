@@ -1,6 +1,6 @@
 import readlineSync from 'readline-sync';
 import greeting, {
-  gameRound, getRandom, minNumber, maxNumber, getCongratulations,
+  gameRound, getRandom, minNumber, maxNumber, getCongratulations, isNumber,
 } from '../index.js';
 
 const GCD = (num1, num2) => {
@@ -20,6 +20,7 @@ export default () => {
   let rndNum1;
   let rndNum2;
   let userAnswer;
+  let varGCD;
   const userName = greeting();
 
   console.log('Find the greatest common divisor of given numbers.');
@@ -28,12 +29,18 @@ export default () => {
     rndNum1 = getRandom(minNumber, maxNumber);
     rndNum2 = getRandom(minNumber, maxNumber);
     console.log(`Question: ${rndNum1} ${rndNum2}`);
-    userAnswer = Number(readlineSync.question('Your answer: '));
-    if (userAnswer === GCD(rndNum1, rndNum2)) {
+    userAnswer = readlineSync.question('Your answer: ');
+
+    varGCD = GCD(rndNum1, rndNum2);
+    if (isNumber(userAnswer, varGCD, userName) === false) {
+      return;
+    }
+
+    if (Number(userAnswer) === varGCD) {
       check += 1;
       console.log('Correct!');
     } else {
-      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${GCD(rndNum1, rndNum2)}'.\nLet's try again, ${userName}`);
+      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${varGCD}'.\nLet's try again, ${userName}`);
       return;
     }
   }
