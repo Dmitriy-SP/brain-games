@@ -1,5 +1,7 @@
 import readlineSync from 'readline-sync';
-import greeting, { gameRound, getRandom } from '../index.js';
+import greeting, {
+  gameRound, getRandom, minNumber, maxNumber, getCongratulations,
+} from '../index.js';
 
 const operationTypes = ['+', '-', '*'];
 
@@ -10,8 +12,6 @@ export default () => {
   let rndNum2;
   let operationType;
   let userAnswer;
-  const minNumber = 1;
-  const maxNumber = 100;
   const userName = greeting();
 
   console.log('What is the result of the expression?');
@@ -53,6 +53,6 @@ export default () => {
         break;
       default:
     }
-    console.log(`Congratulations, ${userName}!`);
+    getCongratulations(userName);
   }
 };

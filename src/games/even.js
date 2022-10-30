@@ -1,11 +1,11 @@
 import readlineSync from 'readline-sync';
-import greeting, { gameRound, getRandom } from '../index.js';
+import greeting, {
+  gameRound, getRandom, minNumber, maxNumber, getCongratulations,
+} from '../index.js';
 
 export default () => {
   let rndNum;
   let userAnswer;
-  const minNumber = 1;
-  const maxNumber = 100;
 
   const userName = greeting();
   console.log('Answer "yes" if the number is even, otherwise answer "no".');
@@ -38,5 +38,5 @@ export default () => {
         return;
     }
   }
-  console.log(`Congratulations, ${userName}!`);
+  getCongratulations(userName);
 };

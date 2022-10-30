@@ -1,6 +1,8 @@
 import askUserName from './cli.js';
 
 export const gameRound = 3;
+export const minNumber = 1;
+export const maxNumber = 100;
 
 export default () => {
   console.log('Welcome to the Brain Games!');
@@ -11,4 +13,8 @@ export default () => {
   return userName;
 };
 
-export const getRandom = (minNumber, maxNumber) => Math.trunc(Math.random() * (maxNumber - minNumber) + minNumber);
+export const getCongratulations = (userName) => {
+  console.log(`Congratulations, ${userName}!`);
+};
+
+export const getRandom = (minNum, maxNum) => Math.trunc(Math.random() * (maxNum - minNum) + minNum);
