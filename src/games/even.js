@@ -16,7 +16,9 @@ export default (userAnswer, userName, rndNum) => {
       getWrongAnswer(userAnswer, userName, 'yes');
       break;
     default:
-      if (rndNum % 2 !== 0) getWrongAnswer(userAnswer, userName, 'no');
+      if (rndNum % 2 !== 0) {
+        getWrongAnswer(userAnswer, userName, 'no');
+      }
       getWrongAnswer(userAnswer, userName, 'yes');
   }
 
