@@ -1,36 +1,40 @@
-import {
-  getRandom, getWrongAnswer, getRightAnswer,
-} from '../index.js';
+import { getRandom, minNumber, maxNumber } from '../cli.js';
 
-// local module canstants
+// module canstants
 const operationTypes = ['+', '-', '*'];
 
-// definition of operation type
-export const getOperation = () => operationTypes[getRandom(0, operationTypes.length - 1)];
+// module variable
+let operationResult;
 
-// determine if the user calculation correctly
-export const isCalcRight = (userAnswer, userName, rndNum1, rndNum2, operationType) => {
+// definition of operation type
+const getOperation = () => operationTypes[getRandom(0, operationTypes.length - 1)];
+
+// greetings
+export default () => {
+  console.log('What is the result of the expression?');
+};
+
+// initialization and get question text
+export const getCalc = () => {
+  const rndNum1 = getRandom(minNumber, maxNumber);
+  const rndNum2 = getRandom(minNumber, maxNumber);
+  const operationType = getOperation();
+
   switch (operationType) {
     case '+':
-      if (Number(userAnswer) === (rndNum1 + rndNum2)) {
-        return getRightAnswer();
-      }
-      getWrongAnswer(userAnswer, userName, (rndNum1 + rndNum2));
+      operationResult = rndNum1 + rndNum2;
       break;
     case '-':
-      if (Number(userAnswer) === (rndNum1 - rndNum2)) {
-        return getRightAnswer();
-      }
-      getWrongAnswer(userAnswer, userName, (rndNum1 - rndNum2));
+      operationResult = rndNum1 - rndNum2;
       break;
     case '*':
-      if (Number(userAnswer) === (rndNum1 * rndNum2)) {
-        return getRightAnswer();
-      }
-      getWrongAnswer(userAnswer, userName, (rndNum1 * rndNum2));
+      operationResult = rndNum1 * rndNum2;
       break;
     default:
   }
 
-  return false;
+  return `${rndNum1} ${operationType} ${rndNum2}`;
 };
+
+// get right answer
+export const getCalcAnswer = () => operationResult;

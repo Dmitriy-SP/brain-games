@@ -1,26 +1,23 @@
-import { getWrongAnswer, getRightAnswer } from '../index.js';
+import { getRandom, minNumber, maxNumber } from '../cli.js';
 
-// determine if the user answer correctly
-export default (userAnswer, userName, rndNum) => {
-  switch (userAnswer) {
-    case 'yes':
-      if (rndNum % 2 === 0) {
-        return getRightAnswer();
-      }
-      getWrongAnswer(userAnswer, userName, 'no');
-      break;
-    case 'no':
-      if (rndNum % 2 !== 0) {
-        return getRightAnswer();
-      }
-      getWrongAnswer(userAnswer, userName, 'yes');
-      break;
-    default:
-      if (rndNum % 2 !== 0) {
-        getWrongAnswer(userAnswer, userName, 'no');
-      }
-      getWrongAnswer(userAnswer, userName, 'yes');
+// module variable
+let rndNum;
+
+// greetings
+export default () => {
+  console.log('Answer "yes" if the number is even, otherwise answer "no".');
+};
+
+// initialization and get question text
+export const getEven = () => {
+  rndNum = getRandom(minNumber, maxNumber);
+  return rndNum;
+};
+
+// get right answer
+export const getEvenAnswer = () => {
+  if (rndNum % 2 === 0) {
+    return 'yes';
   }
-
-  return false;
+  return 'no';
 };

@@ -1,12 +1,12 @@
-import askUserName from './cli.js';
-
-// global constants
-export const gameRound = 3;
-export const minNumber = 1;
-export const maxNumber = 100;
+import askUserName, { getAnswer, gameRound } from './cli.js';
+import toGreetCalc, { getCalc, getCalcAnswer } from './games/calc.js';
+import toGreetEven, { getEven, getEvenAnswer } from './games/even.js';
+import toGreetGCD, { getGCD, getGCDAnswer } from './games/gcd.js';
+import toGreetPrime, { getPrime, getPrimeAnswer } from './games/prime.js';
+import toGreetProg, { getProg, getProgAnswer } from './games/progression.js';
 
 // user greeting
-export default () => {
+export const getGreet = () => {
   console.log('Welcome to the Brain Games!');
 
   const userName = askUserName();
@@ -16,27 +16,109 @@ export default () => {
 };
 
 // user congratulations
-export const getCongratulations = (userName) => {
+const getCongratulations = (userName) => {
   console.log(`Congratulations, ${userName}!`);
 };
 
-// get random number in specified range
-export const getRandom = (minNum, maxNum) => Math.trunc(Math.random() * (maxNum - minNum) + minNum);
+// writing if user get wrong answer
+const getWrongAnswer = (userAnswer, userName, rightAnswer) => console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${rightAnswer}'.\nLet's try again, ${userName}!`);
 
-// defining is variable a number
-export const isNumber = (userAnswer, rightAnswer, userName) => {
-  if (Number.isNaN(userAnswer) === true) {
-    console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${rightAnswer}'.\nLet's try again, ${userName}`);
-    return false;
-  }
+// writing if user get right answer
+const getRightAnswer = () => {
+  console.log('Correct!');
   return true;
 };
 
-// writing if user get wrong answer
-export const getWrongAnswer = (userAnswer, userName, rightAnswer) => console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${rightAnswer}'.\nLet's try again, ${userName}!`);
+// defining is variable a number
+const isNumber = (userAnswer, rightAnswer, userName) => {
+  if (!Number(userAnswer)) {
+    getWrongAnswer(userAnswer, userName, rightAnswer);
+    return true;
+  }
+  return false;
+};
 
-// writing if user get right answer
-export const getRightAnswer = () => {
-  console.log('Correct!');
-  return true;
+// main fuctrion
+export default (gameType) => {
+  let userAnswer;
+  let quest;
+  let rightAnswer;
+
+  const userName = getGreet();
+
+  switch (gameType) {
+    case 'calc':
+      toGreetCalc();
+      break;
+    case 'even':
+      toGreetEven();
+      break;
+    case 'gcd':
+      toGreetGCD();
+      break;
+    case 'prime':
+      toGreetPrime();
+      break;
+    case 'prog':
+      toGreetProg();
+      break;
+    default:
+  }
+
+  for (let check = 0; check < gameRound; check += 1) {
+    switch (gameType) {
+      case 'calc':
+        quest = getCalc();
+        break;
+      case 'even':
+        quest = getEven();
+        break;
+      case 'gcd':
+        quest = getGCD();
+        break;
+      case 'prime':
+        quest = getPrime();
+        break;
+      case 'prog':
+        quest = getProg();
+        break;
+      default:
+    }
+
+    console.log(`Question: ${quest}`);
+    userAnswer = getAnswer();
+
+    switch (gameType) {
+      case 'calc':
+        rightAnswer = getCalcAnswer();
+        if (isNumber(userAnswer, rightAnswer, userName)) { return; }
+        userAnswer = Number(userAnswer);
+        break;
+      case 'even':
+        rightAnswer = getEvenAnswer(quest);
+        break;
+      case 'gcd':
+        rightAnswer = getGCDAnswer();
+        if (isNumber(userAnswer, rightAnswer, userName)) { return; }
+        userAnswer = Number(userAnswer);
+        break;
+      case 'prime':
+        rightAnswer = getPrimeAnswer();
+        break;
+      case 'prog':
+        rightAnswer = getProgAnswer();
+        if (isNumber(userAnswer, rightAnswer, userName)) { return; }
+        userAnswer = Number(userAnswer);
+        break;
+      default:
+    }
+
+    if (userAnswer !== rightAnswer) {
+      getWrongAnswer(userAnswer, userName, rightAnswer);
+      return;
+    }
+    getRightAnswer();
+  }
+
+  getCongratulations(userName);
 };

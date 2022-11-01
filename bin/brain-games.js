@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import greeting from '../src/index.js';
+import { getGreet } from '../src/index.js';
 
-greeting();
+getGreet();
