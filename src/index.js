@@ -5,6 +5,9 @@ import toGreetGCD, { getGCD, getGCDAnswer } from './games/gcd.js';
 import toGreetPrime, { getPrime, getPrimeAnswer } from './games/prime.js';
 import toGreetProg, { getProg, getProgAnswer } from './games/progression.js';
 
+// module variable
+let userAnswer;
+
 // user greeting
 export const getGreet = () => {
   console.log('Welcome to the Brain Games!');
@@ -21,7 +24,7 @@ const getCongratulations = (userName) => {
 };
 
 // writing if user get wrong answer
-const getWrongAnswer = (userAnswer, userName, rightAnswer) => console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${rightAnswer}'.\nLet's try again, ${userName}!`);
+const getWrongAnswer = (userName, rightAnswer) => console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${rightAnswer}'.\nLet's try again, ${userName}!`);
 
 // writing if user get right answer
 const getRightAnswer = () => {
@@ -30,22 +33,16 @@ const getRightAnswer = () => {
 };
 
 // defining is variable a number
-const isNumber = (userAnswer, rightAnswer, userName) => {
+const isNumber = (rightAnswer, userName) => {
   if (!Number(userAnswer)) {
-    getWrongAnswer(userAnswer, userName, rightAnswer);
+    getWrongAnswer(userName, rightAnswer);
     return true;
   }
   return false;
 };
 
-// main fuctrion
-export default (gameType) => {
-  let userAnswer;
-  let quest;
-  let rightAnswer;
-
-  const userName = getGreet();
-
+// start game greeting
+const toGreetStart = (gameType) => {
   switch (gameType) {
     case 'calc':
       toGreetCalc();
@@ -64,57 +61,74 @@ export default (gameType) => {
       break;
     default:
   }
+};
+
+// get question text
+const getQuestion = (gameType) => {
+  switch (gameType) {
+    case 'calc':
+      return getCalc();
+    case 'even':
+      return getEven();
+    case 'gcd':
+      return getGCD();
+    case 'prime':
+      return getPrime();
+    case 'prog':
+      return getProg();
+    default:
+  }
+
+  return 'error';
+};
+
+// get right answer
+const getA = (gameType, userName) => {
+  let rightAnswer;
+  switch (gameType) {
+    case 'calc':
+      rightAnswer = getCalcAnswer();
+      if (isNumber(rightAnswer, userName)) { return NaN; }
+      userAnswer = Number(userAnswer);
+      break;
+    case 'even':
+      rightAnswer = getEvenAnswer();
+      break;
+    case 'gcd':
+      rightAnswer = getGCDAnswer();
+      if (isNumber(rightAnswer, userName)) { return NaN; }
+      userAnswer = Number(userAnswer);
+      break;
+    case 'prime':
+      rightAnswer = getPrimeAnswer();
+      break;
+    case 'prog':
+      rightAnswer = getProgAnswer();
+      if (isNumber(rightAnswer, userName)) { return NaN; }
+      userAnswer = Number(userAnswer);
+      break;
+    default:
+  }
+
+  return rightAnswer;
+};
+
+// main fuctrion
+export default (gameType) => {
+  let question;
+  let rightAnswer;
+
+  const userName = getGreet();
+  toGreetStart(gameType);
 
   for (let check = 0; check < gameRound; check += 1) {
-    switch (gameType) {
-      case 'calc':
-        quest = getCalc();
-        break;
-      case 'even':
-        quest = getEven();
-        break;
-      case 'gcd':
-        quest = getGCD();
-        break;
-      case 'prime':
-        quest = getPrime();
-        break;
-      case 'prog':
-        quest = getProg();
-        break;
-      default:
-    }
-
-    console.log(`Question: ${quest}`);
+    question = getQuestion(gameType);
+    console.log(`Question: ${question}`);
     userAnswer = getAnswer();
-
-    switch (gameType) {
-      case 'calc':
-        rightAnswer = getCalcAnswer();
-        if (isNumber(userAnswer, rightAnswer, userName)) { return; }
-        userAnswer = Number(userAnswer);
-        break;
-      case 'even':
-        rightAnswer = getEvenAnswer(quest);
-        break;
-      case 'gcd':
-        rightAnswer = getGCDAnswer();
-        if (isNumber(userAnswer, rightAnswer, userName)) { return; }
-        userAnswer = Number(userAnswer);
-        break;
-      case 'prime':
-        rightAnswer = getPrimeAnswer();
-        break;
-      case 'prog':
-        rightAnswer = getProgAnswer();
-        if (isNumber(userAnswer, rightAnswer, userName)) { return; }
-        userAnswer = Number(userAnswer);
-        break;
-      default:
-    }
-
+    rightAnswer = getA(gameType, userAnswer, userName);
+    if (Number.isNaN(rightAnswer)) { return; }
     if (userAnswer !== rightAnswer) {
-      getWrongAnswer(userAnswer, userName, rightAnswer);
+      getWrongAnswer(userName, rightAnswer);
       return;
     }
     getRightAnswer();
