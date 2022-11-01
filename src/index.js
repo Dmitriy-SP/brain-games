@@ -27,7 +27,7 @@ const getCongratulations = (userName) => {
 const getWrongAnswer = (userName, rightAnswer) => console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${rightAnswer}'.\nLet's try again, ${userName}!`);
 
 // writing if user get right answer
-const getRightAnswer = () => {
+const getCorrect = () => {
   console.log('Correct!');
   return true;
 };
@@ -82,8 +82,8 @@ const getQuestion = (gameType) => {
   return 'error';
 };
 
-// get right answer
-const getA = (gameType, userName) => {
+// get question answer
+const getRightAnswer = (gameType, userName) => {
   let rightAnswer;
   switch (gameType) {
     case 'calc':
@@ -125,13 +125,13 @@ export default (gameType) => {
     question = getQuestion(gameType);
     console.log(`Question: ${question}`);
     userAnswer = getAnswer();
-    rightAnswer = getA(gameType, userAnswer, userName);
+    rightAnswer = getRightAnswer(gameType, userAnswer, userName);
     if (Number.isNaN(rightAnswer)) { return; }
     if (userAnswer !== rightAnswer) {
       getWrongAnswer(userName, rightAnswer);
       return;
     }
-    getRightAnswer();
+    getCorrect();
   }
 
   getCongratulations(userName);
