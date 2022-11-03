@@ -1,12 +1,10 @@
-import { getRandom, minNumber, maxNumber } from '../cli.js';
+import playGame, { minNumber, maxNumber, getRandom } from '../index.js';
+
+// module constant
+const gameText = 'Answer "yes" if the number is even, otherwise answer "no".';
 
 // module variable
 let rndNum;
-
-// greetings
-export default () => {
-  console.log('Answer "yes" if the number is even, otherwise answer "no".');
-};
 
 // initialization and get question text
 export const getEven = () => {
@@ -20,4 +18,9 @@ export const getEvenAnswer = () => {
     return 'yes';
   }
   return 'no';
+};
+
+// main game function
+export default () => {
+  playGame(gameText, getEven, getEvenAnswer);
 };

@@ -1,4 +1,4 @@
-import { getRandom, minNumber, maxNumber } from '../cli.js';
+import playGame, { getRandom, minNumber, maxNumber } from '../index.js';
 
 // module canstants
 const minLength = 5;
@@ -6,12 +6,10 @@ const maxLength = 10;
 const minStep = 1;
 const maxStep = 20;
 const operationTypes = ['+', '-'];
+const gameText = 'What number is missing in the progression?';
 
 // module variable
 let hiddenNum;
-
-// defining operation sign
-const getOperation = () => operationTypes[getRandom(0, operationTypes.length - 1)];
 
 // defining progression
 const getProgression = () => {
@@ -19,7 +17,7 @@ const getProgression = () => {
   const rndStep = getRandom(minStep, maxStep);
   const progression = [];
   progression[0] = getRandom(minNumber, maxNumber);
-  const operationType = getOperation();
+  const operationType = operationTypes[getRandom(0, operationTypes.length - 1)];
 
   switch (operationType) {
     case '+':
@@ -38,11 +36,6 @@ const getProgression = () => {
   return progression;
 };
 
-// greetings
-export default () => {
-  console.log('What number is missing in the progression?');
-};
-
 // initialization and get question text
 export const getProg = () => {
   const progression = getProgression();
@@ -54,3 +47,8 @@ export const getProg = () => {
 
 // get right answer
 export const getProgAnswer = () => hiddenNum;
+
+// main game function
+export default () => {
+  playGame(gameText, getProg, getProgAnswer);
+};

@@ -1,24 +1,17 @@
-import { getRandom, minNumber, maxNumber } from '../cli.js';
+import playGame, { minNumber, maxNumber, getRandom } from '../index.js';
 
 // module canstants
 const operationTypes = ['+', '-', '*'];
+const gameText = 'What is the result of the expression?';
 
 // module variable
 let operationResult;
-
-// definition of operation type
-const getOperation = () => operationTypes[getRandom(0, operationTypes.length - 1)];
-
-// greetings
-export default () => {
-  console.log('What is the result of the expression?');
-};
 
 // initialization and get question text
 export const getCalc = () => {
   const rndNum1 = getRandom(minNumber, maxNumber);
   const rndNum2 = getRandom(minNumber, maxNumber);
-  const operationType = getOperation();
+  const operationType = operationTypes[getRandom(0, operationTypes.length - 1)];
 
   switch (operationType) {
     case '+':
@@ -38,3 +31,8 @@ export const getCalc = () => {
 
 // get right answer
 export const getCalcAnswer = () => operationResult;
+
+// main game function
+export default () => {
+  playGame(gameText, getCalc, getCalcAnswer);
+};

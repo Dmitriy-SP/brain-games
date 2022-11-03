@@ -1,13 +1,11 @@
-import { minNumber, maxNumber, getRandom } from '../cli.js';
+import playGame, { minNumber, maxNumber, getRandom } from '../index.js';
+
+// module constant
+const gameText = 'Find the greatest common divisor of given numbers.';
 
 // module variables
 let rndNum1;
 let rndNum2;
-
-// greetings
-export default () => {
-  console.log('Find the greatest common divisor of given numbers.');
-};
 
 // initialization and get question text
 export const getGCD = () => {
@@ -30,4 +28,9 @@ export const getGCDAnswer = () => {
   }
 
   return (number1 + number2);
+};
+
+// main game function
+export default () => {
+  playGame(gameText, getGCD, getGCDAnswer);
 };

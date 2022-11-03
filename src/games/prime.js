@@ -1,12 +1,10 @@
-import { getRandom, minNumber, maxNumber } from '../cli.js';
+import playGame, { getRandom, minNumber, maxNumber } from '../index.js';
+
+// module constant
+const gameText = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 // module variable
 let rndNum;
-
-// greetings
-export default () => {
-  console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
-};
 
 // initialization and get question text
 export const getPrime = () => {
@@ -22,4 +20,9 @@ export const getPrimeAnswer = () => {
     }
   }
   return 'yes';
+};
+
+// main game function
+export default () => {
+  playGame(gameText, getPrime, getPrimeAnswer);
 };
