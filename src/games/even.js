@@ -12,7 +12,8 @@ const isEven = (num) => {
 // get question text and right answer
 const getEvenGame = () => {
   const rndNum = getRandom(minNumber, maxNumber);
-  return { question: rndNum, rightAnswer: isEven(rndNum) ? 'yes' : 'no' };
+  const answer = isEven(rndNum) ? 'yes' : 'no';
+  return { question: rndNum, rightAnswer: answer };
 };
 
 // main game function

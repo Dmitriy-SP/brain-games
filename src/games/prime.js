@@ -14,7 +14,8 @@ const isPrime = (num) => {
 // get question text and right answer
 const getPrimeGame = () => {
   const rndNum = getRandom(minNumber, maxNumber);
-  return { question: rndNum, rightAnswer: isPrime(rndNum) ? 'yes' : 'no' };
+  const answer = isPrime(rndNum) ? 'yes' : 'no';
+  return { question: rndNum, rightAnswer: answer };
 };
 
 // main game function
