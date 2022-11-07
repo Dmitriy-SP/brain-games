@@ -15,4 +15,4 @@ const isPrime = (num) => {
 const getPrimeGame = () => getGame(isPrime);
 
 // main game function
-export default () => playGame(gameText, getPrimeGame(isPrime));
+export default () => playGame(gameText, getPrimeGame);
