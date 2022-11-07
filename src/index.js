@@ -8,6 +8,12 @@ export const maxNumber = 100;
 // get random number in specified range
 export const getRandom = (minNum, maxNum) => Math.trunc(Math.random() * (maxNum - minNum) + minNum);
 
+// get answer for even and prime games
+export const getGame = (isFunc) => {
+  const rndNum = getRandom(minNumber, maxNumber);
+  return { question: rndNum, rightAnswer: isFunc(rndNum) ? 'yes' : 'no' };
+};
+
 // main cycle fuction
 export default (gameText, getQuestion) => {
   console.log('Welcome to the Brain Games!');

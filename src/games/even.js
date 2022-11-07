@@ -1,4 +1,4 @@
-import playGame, { minNumber, maxNumber, getRandom } from '../index.js';
+import playGame, { getGame } from '../index.js';
 
 // module constant
 const gameText = 'Answer "yes" if the number is even, otherwise answer "no".';
@@ -10,11 +10,7 @@ const isEven = (num) => {
 };
 
 // get question text and right answer
-const getEvenGame = () => {
-  const rndNum = getRandom(minNumber, maxNumber);
-  const answer = isEven(rndNum) ? 'yes' : 'no';
-  return { question: rndNum, rightAnswer: answer };
-};
+const getEvenGame = () => getGame(isEven);
 
 // main game function
 export default () => playGame(gameText, getEvenGame);

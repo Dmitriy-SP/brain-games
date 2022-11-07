@@ -1,4 +1,4 @@
-import playGame, { getRandom, minNumber, maxNumber } from '../index.js';
+import playGame, { getGame } from '../index.js';
 
 // module constant
 const gameText = 'Answer "yes" if given number is prime. Otherwise answer "no".';
@@ -12,11 +12,7 @@ const isPrime = (num) => {
 };
 
 // get question text and right answer
-const getPrimeGame = () => {
-  const rndNum = getRandom(minNumber, maxNumber);
-  const answer = isPrime(rndNum) ? 'yes' : 'no';
-  return { question: rndNum, rightAnswer: answer };
-};
+const getPrimeGame = () => getGame(isPrime);
 
 // main game function
-export default () => playGame(gameText, getPrimeGame);
+export default () => playGame(gameText, getPrimeGame(isPrime));
