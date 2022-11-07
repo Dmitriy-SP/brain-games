@@ -3,21 +3,10 @@ import playGame, { minNumber, maxNumber, getRandom } from '../index.js';
 // module constant
 const gameText = 'Find the greatest common divisor of given numbers.';
 
-// module variables
-let rndNum1;
-let rndNum2;
-
-// initialization and get question text
-export const getGCD = () => {
-  rndNum1 = getRandom(minNumber, maxNumber);
-  rndNum2 = getRandom(minNumber, maxNumber);
-  return `${rndNum1} ${rndNum2}`;
-};
-
-// get right answer
-export const getGCDAnswer = () => {
-  let number1 = rndNum1;
-  let number2 = rndNum2;
+// find GCD
+const getGCD = (num1, num2) => {
+  let number1 = num1;
+  let number2 = num2;
 
   while (number1 !== 0 && number2 !== 0) {
     if (number1 > number2) {
@@ -30,7 +19,13 @@ export const getGCDAnswer = () => {
   return (number1 + number2);
 };
 
-// main game function
-export default () => {
-  playGame(gameText, getGCD, getGCDAnswer);
+// get question text and right answer
+const getGCDGame = () => {
+  const rndNum1 = getRandom(minNumber, maxNumber);
+  const rndNum2 = getRandom(minNumber, maxNumber);
+
+  return { question: `${rndNum1} ${rndNum2}`, rightAnswer: (getGCD(rndNum1, rndNum2)).toString() };
 };
+
+// main game function
+export default () => playGame(gameText, getGCDGame);

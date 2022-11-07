@@ -3,24 +3,17 @@ import playGame, { minNumber, maxNumber, getRandom } from '../index.js';
 // module constant
 const gameText = 'Answer "yes" if the number is even, otherwise answer "no".';
 
-// module variable
-let rndNum;
-
-// initialization and get question text
-export const getEven = () => {
-  rndNum = getRandom(minNumber, maxNumber);
-  return rndNum;
+// is number are even
+const isEven = (num) => {
+  if (num % 2 === 0) { return true; }
+  return false;
 };
 
-// get right answer
-export const getEvenAnswer = () => {
-  if (rndNum % 2 === 0) {
-    return 'yes';
-  }
-  return 'no';
+// get question text and right answer
+const getEvenGame = () => {
+  const rndNum = getRandom(minNumber, maxNumber);
+  return { question: rndNum, rightAnswer: isEven(rndNum) ? 'yes' : 'no' };
 };
 
 // main game function
-export default () => {
-  playGame(gameText, getEven, getEvenAnswer);
-};
+export default () => playGame(gameText, getEvenGame);

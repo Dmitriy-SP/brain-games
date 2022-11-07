@@ -4,14 +4,12 @@ import playGame, { minNumber, maxNumber, getRandom } from '../index.js';
 const operationTypes = ['+', '-', '*'];
 const gameText = 'What is the result of the expression?';
 
-// module variable
-let operationResult;
-
-// initialization and get question text
-export const getCalc = () => {
+// get question text and right answer
+const getCalcGame = () => {
   const rndNum1 = getRandom(minNumber, maxNumber);
   const rndNum2 = getRandom(minNumber, maxNumber);
   const operationType = operationTypes[getRandom(0, operationTypes.length - 1)];
+  let operationResult;
 
   switch (operationType) {
     case '+':
@@ -26,13 +24,8 @@ export const getCalc = () => {
     default:
   }
 
-  return `${rndNum1} ${operationType} ${rndNum2}`;
+  return { question: `${rndNum1} ${operationType} ${rndNum2}`, rightAnswer: operationResult.toString() };
 };
-
-// get right answer
-export const getCalcAnswer = () => operationResult;
 
 // main game function
-export default () => {
-  playGame(gameText, getCalc, getCalcAnswer);
-};
+export default () => playGame(gameText, getCalcGame);

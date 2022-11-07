@@ -8,9 +8,6 @@ const maxStep = 20;
 const operationTypes = [1, -1];
 const gameText = 'What number is missing in the progression?';
 
-// module variable
-let hiddenNum;
-
 // defining progression
 const getProgression = () => {
   const rndLength = getRandom(minLength, maxLength);
@@ -26,19 +23,14 @@ const getProgression = () => {
   return progression;
 };
 
-// initialization and get question text
-export const getProg = () => {
+// get question text and right answer
+export const getProgGame = () => {
   const progression = getProgression();
   const hiddenNumIndex = getRandom(0, progression.length);
-  hiddenNum = progression[hiddenNumIndex];
+  const hiddenNum = progression[hiddenNumIndex];
   progression[hiddenNumIndex] = '..';
-  return progression.join(' ');
+  return { question: progression.join(' '), rightAnswer: hiddenNum.toString() };
 };
-
-// get right answer
-export const getProgAnswer = () => hiddenNum;
 
 // main game function
-export default () => {
-  playGame(gameText, getProg, getProgAnswer);
-};
+export default () => playGame(gameText, getProgGame);
