@@ -9,9 +9,9 @@ export const maxNumber = 100;
 export const getRandom = (minNum, maxNum) => Math.trunc(Math.random() * (maxNum - minNum) + minNum);
 
 // get answer for even and prime games
-export const getGame = (isFunc) => {
+export const getGame = (auxFunction) => {
   const rndNum = getRandom(minNumber, maxNumber);
-  return { question: rndNum, rightAnswer: isFunc(rndNum) ? 'yes' : 'no' };
+  return { question: rndNum, rightAnswer: auxFunction(rndNum) ? 'yes' : 'no' };
 };
 
 // main cycle fuction
