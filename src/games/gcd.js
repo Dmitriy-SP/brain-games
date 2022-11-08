@@ -1,7 +1,10 @@
-import playGame, { minNumber, maxNumber, getRandom } from '../index.js';
+import playGame from '../index.js';
+import getRandom from '../utils.js';
 
 // module constant
 const gameText = 'Find the greatest common divisor of given numbers.';
+const minNumber = 1;
+const maxNumber = 100;
 
 // find GCD
 const getGCD = (num1, num2) => {

@@ -1,17 +1,15 @@
-import playGame, { getRandom, minNumber, maxNumber } from '../index.js';
+import playGame from '../index.js';
+import getRandom from '../utils.js';
 
 // module canstants
-const minLength = 5;
-const maxLength = 10;
-const minStep = 1;
-const maxStep = 20;
-const operationTypes = [1, -1];
+const minNumber = 1;
+const maxNumber = 100;
 const gameText = 'What number is missing in the progression?';
 
 // defining progression
-const getProgression = () => {
-  const rndLength = getRandom(minLength, maxLength);
-  const rndStep = getRandom(minStep, maxStep);
+const getProgression = (length, step, operationTypes) => {
+  const rndLength = getRandom(length.min, length.max);
+  const rndStep = getRandom(step.min, step.max);
   const progression = [];
   progression[0] = getRandom(minNumber, maxNumber);
   const operationType = operationTypes[getRandom(0, operationTypes.length - 1)];
@@ -25,10 +23,14 @@ const getProgression = () => {
 
 // get question text and right answer
 export const getProgGame = () => {
-  const progression = getProgression();
-  const hiddenNumIndex = getRandom(0, progression.length);
+  const length = { min: 5, max: 10 };
+  const step = { min: 1, max: 20 };
+  const operationTypes = [1, -1];
+  const progression = getProgression(length, step, operationTypes);
+  const hiddenNumIndex = getRandom(0, progression.length - 1);
   const hiddenNum = progression[hiddenNumIndex];
   progression[hiddenNumIndex] = '..';
+
   return { question: progression.join(' '), rightAnswer: hiddenNum.toString() };
 };
 

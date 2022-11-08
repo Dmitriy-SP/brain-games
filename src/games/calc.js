@@ -1,30 +1,26 @@
-import playGame, { minNumber, maxNumber, getRandom } from '../index.js';
+import playGame from '../index.js';
+import getRandom from '../utils.js';
 
 // module canstants
 const operationTypes = ['+', '-', '*'];
 const gameText = 'What is the result of the expression?';
+const minNumber = 1;
+const maxNumber = 100;
+
+// calculating
+const getCalc = (num1, num2, type) => {
+  if (type === '+') { return num1 + num2; }
+  if (type === '-') { return num1 - num2; }
+  return num1 * num2;
+};
 
 // get question text and right answer
 const getCalcGame = () => {
   const rndNum1 = getRandom(minNumber, maxNumber);
   const rndNum2 = getRandom(minNumber, maxNumber);
-  const operationType = operationTypes[getRandom(0, operationTypes.length - 1)];
-  let operationResult;
+  const type = operationTypes[getRandom(0, operationTypes.length - 1)];
 
-  switch (operationType) {
-    case '+':
-      operationResult = rndNum1 + rndNum2;
-      break;
-    case '-':
-      operationResult = rndNum1 - rndNum2;
-      break;
-    case '*':
-      operationResult = rndNum1 * rndNum2;
-      break;
-    default:
-  }
-
-  return { question: `${rndNum1} ${operationType} ${rndNum2}`, rightAnswer: operationResult.toString() };
+  return { question: `${rndNum1} ${type} ${rndNum2}`, rightAnswer: getCalc(rndNum1, rndNum2, type).toString() };
 };
 
 // main game function
