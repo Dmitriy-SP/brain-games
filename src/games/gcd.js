@@ -23,7 +23,7 @@ const getGCD = (num1, num2) => {
 };
 
 // get question text and right answer
-const getGCDGame = () => {
+const generateRound = () => {
   const rndNum1 = getRandom(minNumber, maxNumber);
   const rndNum2 = getRandom(minNumber, maxNumber);
 
@@ -31,4 +31,4 @@ const getGCDGame = () => {
 };
 
 // main game function
-export default () => playGame(gameText, getGCDGame);
+export default () => playGame(gameText, generateRound);

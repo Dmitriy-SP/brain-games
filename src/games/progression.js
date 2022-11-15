@@ -7,12 +7,9 @@ const maxNumber = 100;
 const gameText = 'What number is missing in the progression?';
 
 // defining progression
-const getProgression = (length, step, operationTypes) => {
-  const rndLength = getRandom(length.min, length.max);
-  const rndStep = getRandom(step.min, step.max);
+const getProgression = (operationType, start, rndLength, rndStep) => {
   const progression = [];
-  progression[0] = getRandom(minNumber, maxNumber);
-  const operationType = operationTypes[getRandom(0, operationTypes.length - 1)];
+  progression[0] = start;
 
   for (let i = 1; i < rndLength; i += 1) {
     progression[i] = progression[i - 1] + rndStep * operationType;
@@ -22,11 +19,18 @@ const getProgression = (length, step, operationTypes) => {
 };
 
 // get question text and right answer
-export const getProgGame = () => {
+export const generateRound = () => {
   const length = { min: 5, max: 10 };
   const step = { min: 1, max: 20 };
+  // 1 for '+', -1 for '-'
   const operationTypes = [1, -1];
-  const progression = getProgression(length, step, operationTypes);
+
+  const operationType = operationTypes[getRandom(0, operationTypes.length - 1)];
+  const start = getRandom(minNumber, maxNumber);
+  const rndLength = getRandom(length.min, length.max);
+  const rndStep = getRandom(step.min, step.max);
+
+  const progression = getProgression(operationType, start, rndLength, rndStep);
   const hiddenNumIndex = getRandom(0, progression.length - 1);
   const hiddenNum = progression[hiddenNumIndex];
   progression[hiddenNumIndex] = '..';
@@ -35,4 +39,4 @@ export const getProgGame = () => {
 };
 
 // main game function
-export default () => playGame(gameText, getProgGame);
+export default () => playGame(gameText, generateRound);

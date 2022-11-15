@@ -13,10 +13,10 @@ const isEven = (num) => {
 };
 
 // get question text and right answer
-const getEvenGame = () => {
+const generateRound = () => {
   const rndNum = getRandom(minNumber, maxNumber);
   return { question: rndNum, rightAnswer: isEven(rndNum) ? 'yes' : 'no' };
 };
 
 // main game function
-export default () => playGame(gameText, getEvenGame);
+export default () => playGame(gameText, generateRound);

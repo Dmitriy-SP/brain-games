@@ -1,16 +1,16 @@
 import readlineSync from 'readline-sync';
 
 // module constants
-const gameRound = 3;
+const gameRoundsNumber = 3;
 
 // main cycle fuction
-export default (gameText, getQuestion) => {
+export default (gameText, generateRound) => {
   console.log(`Welcome to the Brain Games!\n${gameText}`);
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}!`);
 
-  for (let check = 0; check < gameRound; check += 1) {
-    const { question, rightAnswer } = getQuestion();
+  for (let i = 0; i < gameRoundsNumber; i += 1) {
+    const { question, rightAnswer } = generateRound();
     console.log(`Question: ${question}`);
     const userAnswer = readlineSync.question('Your answer: ');
 

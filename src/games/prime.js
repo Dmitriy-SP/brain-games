@@ -15,10 +15,10 @@ const isPrime = (num) => {
 };
 
 // get question text and right answer
-const getPrimeGame = () => {
+const generateRound = () => {
   const rndNum = getRandom(minNumber, maxNumber);
   return { question: rndNum, rightAnswer: isPrime(rndNum) ? 'yes' : 'no' };
 };
 
 // main game function
-export default () => playGame(gameText, getPrimeGame);
+export default () => playGame(gameText, generateRound);

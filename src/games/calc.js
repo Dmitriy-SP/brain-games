@@ -15,7 +15,7 @@ const getCalc = (num1, num2, type) => {
 };
 
 // get question text and right answer
-const getCalcGame = () => {
+const generateRound = () => {
   const rndNum1 = getRandom(minNumber, maxNumber);
   const rndNum2 = getRandom(minNumber, maxNumber);
   const type = operationTypes[getRandom(0, operationTypes.length - 1)];
@@ -24,4 +24,4 @@ const getCalcGame = () => {
 };
 
 // main game function
-export default () => playGame(gameText, getCalcGame);
+export default () => playGame(gameText, generateRound);
