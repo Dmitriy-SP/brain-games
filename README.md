@@ -13,7 +13,7 @@ List of games:
     <li>Progression. Search for missing numbers in a sequence of numbers.</li>
 </ul>
 
-
+#
 - [Description](#Description)
 - [Installation](#Installation)
 - [Examples](#Examples)
